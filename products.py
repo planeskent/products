@@ -1,4 +1,18 @@
+#read the file
 products = []
+with open ('products.csv' , 'r', encoding='utf-8') as f:
+	#for loop on each line, read every line with using ',' as spliting and also strip /n
+	 for line in f:
+	 	if 'Products,Price' in line:
+	 		continue #continue means skipping the below loop, and jump to next loop again; not same as break
+	 	#split the first column as 'name; second column as 'price'
+	 	name, price = line.strip().split(',')
+	 	#append the data into big list of products, with small list for each line wiht name and price as small list
+	 	products.append([name, price])
+
+print(products)
+
+#Let user input details
 while True:
 	name = input('Please input the name of product:')
 	if name == "q":
@@ -26,10 +40,12 @@ for p in products:
 for p in products:
 	print(p[0])
 
+#To print out all purcahse record
 #print out every item in list of products' first column and also showing the second column of price
 for p in products:
 	print(p[0], "cost is", p[1])
 
+#Write into the file
 #Open and prepare to write the item stored in program into the file "products.csv **If the file not existing, then it will create a new file
 #"with" is python special function which all code will close after leaving with
 with open("products.csv", "w", encoding='utf-8') as f:
